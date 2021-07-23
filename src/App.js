@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+
+import { NoteLystApp } from './sections/NoteLystApp';
+import { SignUp } from './sections/SignUp';
+import { Login } from './sections/Login';
+
+const $App = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Nunito', sans-serif;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <$App>
+      <Router>
+        <Switch>
+          <Route path='/' exact>
+            <NoteLystApp />
+          </Route>
+          <Route path='/signup'>
+            <SignUp />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+        </Switch>
+      </Router>
+    </$App>
   );
 }
 
