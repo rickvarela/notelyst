@@ -168,13 +168,6 @@ const NoteItem = ({ note, _idUnderEdit, handelExpand, screenState }) => {
   };
 
   const handelDelete = () => {
-    if (noteState.data.length === 1) return;
-    if (note._id === noteState._idUnderEdit) {
-      dispatchNoteState({
-        type: 'CHANGE_NOTE_UNDER_EDIT',
-        payload: { _idUnderEdit: noteState.data[0]._id },
-      });
-    }
     dispatchNoteState({
       type: 'DELETE_NOTE',
       payload: { _idToDelete: note._id },
