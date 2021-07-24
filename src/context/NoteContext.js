@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 
 const Context = createContext();
 
@@ -94,12 +94,54 @@ const createNewNote = (init_id) => {
   };
 };
 
+const initNoteState = () => {
+  let noteState = sessionStorage.getItem('noteLyst-data');
+  noteState = JSON.parse(sessionStorage.getItem('noteLyst-data'));
+  console.log(noteState);
+  if (noteState) {
+    noteState = noteState.map((note) => {
+      return {
+        ...note,
+        selection: {
+          anchor: {
+            path: [0, 0],
+            offset: 0,
+          },
+          focus: {
+            path: [0, 0],
+            offset: 0,
+          },
+        },
+      };
+    });
+    return {
+      _idUnderEdit: noteState[0]._id,
+      editorFocus: true,
+      data: noteState,
+    }
+  } else {
+    let init_id = nanoid();
+    return {
+      _idUnderEdit: init_id,
+      editorFocus: true,
+      data: [createNewNote(init_id)],
+    }
+  }
+};
+
 export const NoteProvider = ({ children }) => {
-  let init_id = nanoid();
-  const [noteState, dispatchNoteState] = useReducer(noteReducer, {
-    _idUnderEdit: init_id,
-    editorFocus: true,
-    data: [createNewNote(init_id)],
+  
+  const [noteState, dispatchNoteState] = useReducer(noteReducer, initNoteState());
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      'noteLyst-data',
+      JSON.stringify(
+        noteState.data.map((note) => {
+          return { _id: note._id, editorState: note.editorState };
+        })
+      )
+    );
   });
 
   const value = {
