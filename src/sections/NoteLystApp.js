@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 
 import { MenuArea } from '../components/MenuArea';
 import { EditorArea } from '../components/EditorArea';
@@ -16,8 +17,10 @@ export const NoteLystApp = () => {
     isMobile: window.innerWidth < 800,
     expandMenu: false,
   });
+  const { actions } = useAuth();
 
   useEffect(() => {
+    actions.checkAuth()
     const updateWindow = () => {
       setScreenState((prevState) => ({
         ...prevState,

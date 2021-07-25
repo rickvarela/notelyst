@@ -5,6 +5,8 @@ import { Slate, withReact, Editable, ReactEditor } from 'slate-react';
 import { createEditor } from 'slate';
 import { useEffect, useMemo } from 'react';
 import { useNoteState } from '../context/NoteContext';
+import { useAuth } from '../context/AuthContext';
+import UserIcon from '../assets/svg/user-icon.svg';
 
 //Editor Area
 
@@ -72,17 +74,36 @@ const $Link = styled(Link)`
   }
 `;
 
+const $UserIcon = styled.img`
+  height: 20px;
+`;
+
+const $UserText = styled.div`
+  margin: 0 40px 0 10px;
+`;
+
 const EditorAreaHeader = ({ handelExpand }) => {
+  const { authState, actions } = useAuth();
   return (
     <$EditorAreaHeader>
       <$Button onClick={handelExpand}>EXPAND MENU</$Button>
       <$Nav>
-        <$Link to='/signup' role='button'>
-          SIGN UP
-        </$Link>
-        <$Link to='/login' role='button'>
-          LOGIN
-        </$Link>
+        {authState.authUser ? (
+          <>
+            <$UserIcon src={UserIcon} />
+            <$UserText>{authState.authUser.username}</$UserText>
+            <$Button onClick={actions.signOut}>SIGN OUT</$Button>
+          </>
+        ) : (
+          <>
+            <$Link to='/signup' role='button'>
+              SIGN UP
+            </$Link>
+            <$Link to='/login' role='button'>
+              LOGIN
+            </$Link>
+          </>
+        )}
       </$Nav>
     </$EditorAreaHeader>
   );

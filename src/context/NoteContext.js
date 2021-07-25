@@ -97,7 +97,6 @@ const createNewNote = (init_id) => {
 const initNoteState = () => {
   let noteState = sessionStorage.getItem('noteLyst-data');
   noteState = JSON.parse(sessionStorage.getItem('noteLyst-data'));
-  console.log(noteState);
   if (noteState) {
     noteState = noteState.map((note) => {
       return {
