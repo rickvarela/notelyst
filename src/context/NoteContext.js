@@ -33,7 +33,7 @@ const noteReducer = (state, action) => {
         ...state,
         editorFocus: true,
         _idUnderEdit: init_id,
-        data: [...state.data, createNewNote(init_id)],
+        data: [createNewNote(init_id), ...state.data],
       };
 
     case 'DELETE_NOTE':
@@ -48,10 +48,10 @@ const noteReducer = (state, action) => {
           deletedIndex = index;
           return false;
         });
-        if (deletedIndex === 0) {
-          _idUnderEdit = newData[0]._id;
+        if (deletedIndex === newData.length) {
+          _idUnderEdit = newData[newData.length - 1]._id;
         } else {
-          _idUnderEdit = newData[deletedIndex - 1]._id;
+          _idUnderEdit = newData[deletedIndex]._id;
         }
         return {
           ...state,
@@ -117,20 +117,22 @@ const initNoteState = () => {
       _idUnderEdit: noteState[0]._id,
       editorFocus: true,
       data: noteState,
-    }
+    };
   } else {
     let init_id = nanoid();
     return {
       _idUnderEdit: init_id,
       editorFocus: true,
       data: [createNewNote(init_id)],
-    }
+    };
   }
 };
 
 export const NoteProvider = ({ children }) => {
-  
-  const [noteState, dispatchNoteState] = useReducer(noteReducer, initNoteState());
+  const [noteState, dispatchNoteState] = useReducer(
+    noteReducer,
+    initNoteState()
+  );
 
   useEffect(() => {
     sessionStorage.setItem(
