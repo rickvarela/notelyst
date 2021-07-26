@@ -143,7 +143,7 @@ export const NoteProvider = ({ children }) => {
         })
       )
     );
-  });
+  }, [noteState.data]);
 
   const value = {
     noteState,
