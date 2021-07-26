@@ -1,5 +1,10 @@
 import { createContext, useState, useContext } from 'react';
 
+const apiDomain = (path) => {
+  const production = process.env.NODE_ENV === 'production';
+  return production ? 'https://notelyst-v3-api.herokuapp.com' + path : path;
+};
+
 const Context = createContext();
 
 export const Provider = ({ children }) => {
@@ -9,7 +14,7 @@ export const Provider = ({ children }) => {
   });
 
   const checkAuth = () => {
-    fetch('/api/checkAuth')
+    fetch(apiDomain('/api/checkAuth'))
       .then((res) => res.json())
       .then((data) => {
         if (data.authUser) {
@@ -27,7 +32,7 @@ export const Provider = ({ children }) => {
   };
 
   const login = (user, cb) => {
-    fetch('api/auth', {
+    fetch(apiDomain('/api/auth'), {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -39,7 +44,7 @@ export const Provider = ({ children }) => {
   };
 
   const signUp = (user, cb) => {
-    fetch('/api/signup', {
+    fetch(apiDomain('/api/signup'), {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -51,7 +56,7 @@ export const Provider = ({ children }) => {
   };
 
   const signOut = () => {
-    fetch('/api/delete', {
+    fetch(apiDomain('/api/delete'), {
       method: 'POST',
       credentials: 'include',
     }).then(() => {
