@@ -34,6 +34,7 @@ export const Provider = ({ children }) => {
   const login = (user, cb) => {
     fetch(apiDomain('/api/auth'), {
       method: 'POST',
+      credentials: 'include',
       body: JSON.stringify(user),
       headers: {
         'Content-Type': 'application/json',
