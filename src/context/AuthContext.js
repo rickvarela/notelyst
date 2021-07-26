@@ -2,7 +2,7 @@ import { createContext, useState, useContext } from 'react';
 
 const apiDomain = (path) => {
   const production = process.env.NODE_ENV === 'production';
-  return production ? 'http://api.rickvarela.com' + path : path;
+  return production ? 'https://api.rickvarela.com' + path : path;
 };
 
 const Context = createContext();
