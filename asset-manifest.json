@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/notelyst/static/css/main.bb8459a8.chunk.css",
+    "main.js": "/notelyst/static/js/main.a26dd02b.chunk.js",
+    "main.js.map": "/notelyst/static/js/main.a26dd02b.chunk.js.map",
+    "runtime-main.js": "/notelyst/static/js/runtime-main.a52c1abd.js",
+    "runtime-main.js.map": "/notelyst/static/js/runtime-main.a52c1abd.js.map",
+    "static/js/2.c2cba294.chunk.js": "/notelyst/static/js/2.c2cba294.chunk.js",
+    "static/js/2.c2cba294.chunk.js.map": "/notelyst/static/js/2.c2cba294.chunk.js.map",
+    "static/js/3.7f66eaeb.chunk.js": "/notelyst/static/js/3.7f66eaeb.chunk.js",
+    "static/js/3.7f66eaeb.chunk.js.map": "/notelyst/static/js/3.7f66eaeb.chunk.js.map",
+    "index.html": "/notelyst/index.html",
+    "static/css/main.bb8459a8.chunk.css.map": "/notelyst/static/css/main.bb8459a8.chunk.css.map",
+    "static/js/2.c2cba294.chunk.js.LICENSE.txt": "/notelyst/static/js/2.c2cba294.chunk.js.LICENSE.txt",
+    "static/media/close-x.b49d62b8.svg": "/notelyst/static/media/close-x.b49d62b8.svg",
+    "static/media/site-logo.fbbde1f3.svg": "/notelyst/static/media/site-logo.fbbde1f3.svg",
+    "static/media/user-icon.e4431ccb.svg": "/notelyst/static/media/user-icon.e4431ccb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a52c1abd.js",
+    "static/js/2.c2cba294.chunk.js",
+    "static/css/main.bb8459a8.chunk.css",
+    "static/js/main.a26dd02b.chunk.js"
+  ]
+}
