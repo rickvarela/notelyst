@@ -14,7 +14,10 @@ export const Provider = ({ children }) => {
   });
 
   const checkAuth = () => {
-    fetch(apiDomain('/api/checkAuth'))
+    fetch(apiDomain('/api/checkAuth'), {
+      method: 'GET',
+      credentials: 'include',
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.authUser) {
