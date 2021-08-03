@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
 
 import { MenuArea } from '../components/MenuArea';
 import { EditorArea } from '../components/EditorArea';
-import { NoteProvider } from '../context/NoteContext';
+import { useNoteState } from '../context/NoteContext';
 
 const $NoteLystApp = styled.div`
   display: flex;
@@ -17,10 +16,10 @@ export const NoteLystApp = () => {
     isMobile: window.innerWidth < 800,
     expandMenu: false,
   });
-  const { actions } = useAuth();
+  const { noteState, noteActions } = useNoteState();
 
   useEffect(() => {
-    actions.checkAuth()
+    noteActions.initNoteState()
     const updateWindow = () => {
       setScreenState((prevState) => ({
         ...prevState,
@@ -39,12 +38,10 @@ export const NoteLystApp = () => {
     }));
   };
 
-  return (
-    <NoteProvider>
-      <$NoteLystApp>
-        <MenuArea handelExpand={handelExpand} screenState={screenState} />
-        <EditorArea handelExpand={handelExpand} screenState={screenState} />
-      </$NoteLystApp>
-    </NoteProvider>
-  );
+  return noteState.data ? (
+    <$NoteLystApp>
+      <MenuArea handelExpand={handelExpand} screenState={screenState} />
+      <EditorArea handelExpand={handelExpand} screenState={screenState} />
+    </$NoteLystApp>
+  ) : null;
 };

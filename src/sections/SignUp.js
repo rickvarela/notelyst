@@ -19,7 +19,7 @@ export const SignUp = () => {
     password: '',
   });
   const history = useHistory();
-  const { actions } = useAuth();
+  const { authActions } = useAuth();
 
   const handelInputChange = (event) => {
     const { value, name } = event.target;
@@ -31,7 +31,7 @@ export const SignUp = () => {
 
   const handelSubmit = (event) => {
     event.preventDefault();
-    actions.signUp(input, () => {
+    authActions.signUp(input, () => {
       history.push('/');
     });
   };

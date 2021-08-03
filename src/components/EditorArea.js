@@ -1,4 +1,4 @@
-import { Editor, Transforms } from 'slate';
+import { Transforms } from 'slate';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Slate, withReact, Editable, ReactEditor } from 'slate-react';
@@ -83,16 +83,39 @@ const $UserText = styled.div`
 `;
 
 const EditorAreaHeader = ({ handelExpand }) => {
-  const { authState, actions } = useAuth();
+  const { authState, authActions } = useAuth();
+  const { noteState, noteActions } = useNoteState();
+
+  const handelSignOut = () => {
+    authActions.signOut().then(() => {
+      noteActions.resetNotes();
+    });
+  };
+
+  const getCurrentNote = () => {
+    return noteState.data.filter(
+      (note) => note._id === noteState._idUnderEdit
+    )[0];
+  };
+
+  const handelSave = () => {
+    noteActions.saveNote(getCurrentNote());
+  };
+
   return (
     <$EditorAreaHeader>
-      <$Button onClick={handelExpand}>EXPAND MENU</$Button>
+      <div>
+        <$Button onClick={handelExpand}>EXPAND MENU</$Button>
+        {authState.authUser && (
+          <$Button onClick={handelSave}>SAVE NOTE</$Button>
+        )}
+      </div>
       <$Nav>
         {authState.authUser ? (
           <>
             <$UserIcon src={UserIcon} />
             <$UserText>{authState.authUser.username}</$UserText>
-            <$Button onClick={actions.signOut}>SIGN OUT</$Button>
+            <$Button onClick={handelSignOut}>SIGN OUT</$Button>
           </>
         ) : (
           <>
@@ -118,7 +141,7 @@ const $EditorInput = styled.div`
 
 const EditorInput = () => {
   const editor = useMemo(() => withReact(createEditor()), []);
-  const { noteState, dispatchNoteState } = useNoteState();
+  const { noteState, noteActions } = useNoteState();
 
   useEffect(() => {
     if (noteState.editorFocus) {
@@ -139,35 +162,16 @@ const EditorInput = () => {
     )[0].selection;
   };
 
-  const handelEditorState = (stateToUpdate) => {
-    dispatchNoteState({
-      type: 'UPDATE_NOTE_UNDER_EDIT',
-      payload: {
-        note: { editorState: stateToUpdate },
-      },
-    });
-  };
-
-  const handelOnBlur = () => {
-    dispatchNoteState({
-      type: 'UPDATE_NOTE_UNDER_EDIT',
-      payload: {
-        note: { selection: editor.selection },
-      },
-    });
-  };
-
   return (
     <$EditorInput>
       <Slate
         editor={editor}
         value={getCurrentNoteState()}
-        onChange={handelEditorState}
+        onChange={noteActions.updateEditorStateUnderEdit}
       >
         <Editable
           placeholder='Enter some text...'
-          autoFocus
-          onBlur={handelOnBlur}
+          onBlur={() => noteActions.updateSelectionUnderEdit(editor.selection)}
         />
       </Slate>
     </$EditorInput>

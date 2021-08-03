@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { useNoteState } from '../context/NoteContext';
 import { Node } from 'slate';
 import SiteLogo from '../assets/svg/site-logo.svg';
-import CloseX from '../assets/svg/close-x.svg';
+import deleteIcon from '../assets/svg/delete-icon.svg';
+import UnsavedIcon from '../assets/svg/unsaved-icon.svg';
+import { useAuth } from '../context/AuthContext';
 
 const $MenuArea = styled.div`
   background-color: #e7ebee;
@@ -113,12 +115,17 @@ const $NoteItem = styled.div`
     background-color: ${(props) => (props.isCurrent ? 'none' : '#CED6DF')};
   }
 
-  img {
+  img.deleteIcon {
     opacity: 0;
     height: 15px;
   }
 
-  &:hover img {
+  img.UnsavedIcon {
+    opacity: ${(props) => (props.isSaved ? 0 : 1)};
+    height: 15px;
+  }
+
+  &:hover img.deleteIcon {
     opacity: 1;
   }
 `;
@@ -148,7 +155,8 @@ const $NoteItemText = styled.div`
 `;
 
 const NoteItem = ({ note, _idUnderEdit, handelExpand, screenState }) => {
-  const { noteState, dispatchNoteState } = useNoteState();
+  const { noteActions } = useNoteState();
+  const { authState } = useAuth();
   let noteContent = note.editorState;
 
   const getNoteText = () => {
@@ -160,24 +168,21 @@ const NoteItem = ({ note, _idUnderEdit, handelExpand, screenState }) => {
   };
 
   const handelClick = () => {
-    dispatchNoteState({ 
-      type: 'CHANGE_NOTE_UNDER_EDIT',
-      payload: { _idUnderEdit: note._id },
-    });
+    noteActions.changeNoteUnderEdit(note._id);
     if (screenState.isMobile) handelExpand();
   };
 
   const handelDelete = () => {
-    dispatchNoteState({
-      type: 'DELETE_NOTE',
-      payload: { _idToDelete: note._id },
-    });
+    noteActions.deleteNote(note._id);
   };
 
   return (
-    <$NoteItem isCurrent={note._id === _idUnderEdit}>
+    <$NoteItem isCurrent={note._id === _idUnderEdit} isSaved={note.saved}>
       <$IconWrapper>
-        <img onClick={handelDelete} src={CloseX} />
+        <img className='deleteIcon' onClick={handelDelete} src={deleteIcon} />
+        {authState.authUser && (
+          <img className='UnsavedIcon' src={UnsavedIcon} />
+        )}
       </$IconWrapper>
       <$NoteItemWrapper onClick={handelClick}>
         <$NoteItemText bold>

@@ -13,8 +13,8 @@ export const Provider = ({ children }) => {
     authUser: null,
   });
 
-  const checkAuth = () => {
-    fetch(apiDomain('/api/checkAuth'), {
+  const checkAuth = async () => {
+    return await fetch(apiDomain('/api/checkAuth'), {
       method: 'GET',
       credentials: 'include',
     })
@@ -25,11 +25,13 @@ export const Provider = ({ children }) => {
             isLoaded: true,
             authUser: data.authUser,
           });
+          return true;
         } else {
           setAuthState({
             isLoaded: true,
             authUser: null,
           });
+          return false;
         }
       });
   };
@@ -59,8 +61,8 @@ export const Provider = ({ children }) => {
     });
   };
 
-  const signOut = () => {
-    fetch(apiDomain('/api/delete'), {
+  const signOut = async () => {
+    return await fetch(apiDomain('/api/delete'), {
       method: 'POST',
       credentials: 'include',
     }).then(() => {
@@ -73,7 +75,7 @@ export const Provider = ({ children }) => {
 
   const value = {
     authState,
-    actions: {
+    authActions: {
       checkAuth,
       login,
       signUp,

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
-
 import { NoteLystApp } from './sections/NoteLystApp';
 import { SignUp } from './sections/SignUp';
 import { Login } from './sections/Login';
+import { NoteProvider } from './context/NoteContext';
 
 const $App = styled.div`
   display: flex;
@@ -20,7 +20,9 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' exact>
-            <NoteLystApp />
+            <NoteProvider>
+              <NoteLystApp />
+            </NoteProvider>
           </Route>
           <Route path='/signup'>
             <SignUp />
