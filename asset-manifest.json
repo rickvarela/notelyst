@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/notelyst/static/css/main.bb8459a8.chunk.css",
-    "main.js": "/notelyst/static/js/main.9acb5994.chunk.js",
-    "main.js.map": "/notelyst/static/js/main.9acb5994.chunk.js.map",
+    "main.js": "/notelyst/static/js/main.6c5b36a6.chunk.js",
+    "main.js.map": "/notelyst/static/js/main.6c5b36a6.chunk.js.map",
     "runtime-main.js": "/notelyst/static/js/runtime-main.264d2289.js",
     "runtime-main.js.map": "/notelyst/static/js/runtime-main.264d2289.js.map",
     "static/js/2.a241f27d.chunk.js": "/notelyst/static/js/2.a241f27d.chunk.js",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.264d2289.js",
     "static/js/2.a241f27d.chunk.js",
     "static/css/main.bb8459a8.chunk.css",
-    "static/js/main.9acb5994.chunk.js"
+    "static/js/main.6c5b36a6.chunk.js"
   ]
 }
