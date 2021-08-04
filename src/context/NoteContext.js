@@ -294,7 +294,7 @@ export const NoteProvider = ({ children }) => {
   const initNoteState = async () => {
     const isAuth = await authActions.checkAuth();
     if (isAuth) {
-      fetch(apiDomain('api/notes/user'), {
+      fetch(apiDomain('/api/notes/user'), {
         method: 'GET',
         credentials: 'include',
       })
