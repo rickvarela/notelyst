@@ -1,25 +1,26 @@
 {
   "files": {
     "main.css": "/notelyst/static/css/main.bb8459a8.chunk.css",
-    "main.js": "/notelyst/static/js/main.2f83833f.chunk.js",
-    "main.js.map": "/notelyst/static/js/main.2f83833f.chunk.js.map",
-    "runtime-main.js": "/notelyst/static/js/runtime-main.a52c1abd.js",
-    "runtime-main.js.map": "/notelyst/static/js/runtime-main.a52c1abd.js.map",
-    "static/js/2.e2112ec6.chunk.js": "/notelyst/static/js/2.e2112ec6.chunk.js",
-    "static/js/2.e2112ec6.chunk.js.map": "/notelyst/static/js/2.e2112ec6.chunk.js.map",
-    "static/js/3.7f66eaeb.chunk.js": "/notelyst/static/js/3.7f66eaeb.chunk.js",
-    "static/js/3.7f66eaeb.chunk.js.map": "/notelyst/static/js/3.7f66eaeb.chunk.js.map",
+    "main.js": "/notelyst/static/js/main.9acb5994.chunk.js",
+    "main.js.map": "/notelyst/static/js/main.9acb5994.chunk.js.map",
+    "runtime-main.js": "/notelyst/static/js/runtime-main.264d2289.js",
+    "runtime-main.js.map": "/notelyst/static/js/runtime-main.264d2289.js.map",
+    "static/js/2.a241f27d.chunk.js": "/notelyst/static/js/2.a241f27d.chunk.js",
+    "static/js/2.a241f27d.chunk.js.map": "/notelyst/static/js/2.a241f27d.chunk.js.map",
+    "static/js/3.2739a975.chunk.js": "/notelyst/static/js/3.2739a975.chunk.js",
+    "static/js/3.2739a975.chunk.js.map": "/notelyst/static/js/3.2739a975.chunk.js.map",
     "index.html": "/notelyst/index.html",
     "static/css/main.bb8459a8.chunk.css.map": "/notelyst/static/css/main.bb8459a8.chunk.css.map",
-    "static/js/2.e2112ec6.chunk.js.LICENSE.txt": "/notelyst/static/js/2.e2112ec6.chunk.js.LICENSE.txt",
-    "static/media/close-x.b49d62b8.svg": "/notelyst/static/media/close-x.b49d62b8.svg",
+    "static/js/2.a241f27d.chunk.js.LICENSE.txt": "/notelyst/static/js/2.a241f27d.chunk.js.LICENSE.txt",
+    "static/media/delete-icon.b49d62b8.svg": "/notelyst/static/media/delete-icon.b49d62b8.svg",
     "static/media/site-logo.fbbde1f3.svg": "/notelyst/static/media/site-logo.fbbde1f3.svg",
+    "static/media/unsaved-icon.13111683.svg": "/notelyst/static/media/unsaved-icon.13111683.svg",
     "static/media/user-icon.e4431ccb.svg": "/notelyst/static/media/user-icon.e4431ccb.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a52c1abd.js",
-    "static/js/2.e2112ec6.chunk.js",
+    "static/js/runtime-main.264d2289.js",
+    "static/js/2.a241f27d.chunk.js",
     "static/css/main.bb8459a8.chunk.css",
-    "static/js/main.2f83833f.chunk.js"
+    "static/js/main.9acb5994.chunk.js"
   ]
 }
